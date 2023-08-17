@@ -4,6 +4,8 @@ import string
 import os
 app = Flask(__name__)
 
+script_dir =os.path.dirname(os.path.realpath(__file__))
+pass_path = os.path.join(script_dir, 'password.txt')
 
 @app.route('/')
 def home():
@@ -53,7 +55,7 @@ def download_password(username, password):
     if not os.path.exists(folder_name):
         os.makedirs(folder_name)  # Create the folder if it doesn't exist
 
-    filename = os.path.join(folder_name, 'password.txt')  # Specify the file path
+    filename = os.path.join(folder_name, pass_path)  # Specify the file path
     with open(filename, 'w') as file:
         file.write(f'Username: {username}\nPassword: {password}\n')
     return send_file(filename, as_attachment=True)
