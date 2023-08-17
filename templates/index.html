@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='static/style.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+<body>
+    <div>
+      <img class="img" src="https://raw.githubusercontent.com/MariyaSha/SimpleGreetingApp/main/logo.png">
+        <h1>Password Generator</h1>
+        <form action="/generate" method="post">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <br>
+            
+            <button  type="submit" id="greet" >Generate</button>
+        </form>
+        <br>
+          <h2>Generated Password:</h2>
+        
+        <p> {{ password }}</p>
+        {% if username and password %}
+        <br>
+        
+        <a href="{{ url_for('download_password', username=username, password=password) }}" download="{{ username }}_password.txt" id="greet"> <br>
+          Download Password</a>
+        {% endif %}
+    </div>
+</body>
+</html>
